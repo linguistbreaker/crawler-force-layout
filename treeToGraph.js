@@ -1,6 +1,6 @@
 var fs = require("fs");
 // var graph = require("data/graph.json");
-var wipro = require("/Users/chas/git/crawler-force-layout/sitemaps/wiprodigital.com.json");
+var wipro = require("/Users/chas/git/crawler-force-layout/sitemaps/apple.com.json");
 var myGraph = {"nodes":[],"links":[]};
 var groups = [];
 var count = 0;
