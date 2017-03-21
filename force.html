@@ -7,14 +7,27 @@
   stroke-opacity: 0.6;
 }
 
-.nodes circle {
+.node circle {
   stroke: #fff;
   stroke-width: 1.5px;
+}
+.node circle text {
+  display: inline;
+  color:black;
+  font: 10px sans-serif;
+}
+
+.node circle:hover {
+  stroke: #000;
+  stroke-width:3px;
 }
 
 </style>
 <svg width="1100" height="670"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.css" type="text/css" />
 <script>
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
@@ -25,8 +38,8 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 var simulation = d3.forceSimulation()
     .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("collide", d3.forceCollide())
-    .force("charge", d3.forceManyBody().strength(function strength(){return -70;}))
+    // .force("collide", d3.forceCollide())
+    .force("charge", d3.forceManyBody().strength(function strength(){return -75;}))
     // .force("forceX", d3.forceX().strength(function(node){return 1/node.group;}).x(function(node){return node.group*2;}))
     // .force("forceY", d3.forceY().strength(function(node){return 1/node.group;}).y(function(node){return node.group*2;}))
     // .force("forceX", d3.forceX().strength(function(node){return 10;}).x(function(node){return 100;}))
@@ -36,44 +49,49 @@ var simulation = d3.forceSimulation()
 d3.json("data/treeGraph.json", function(error, graph) {
   if (error) throw error;
 
-  var link = svg.append("g")
-      .attr("class", "links")
-    .selectAll("line")
-    .data(graph.links)
-    .enter().append("line")
-      .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+var link = svg.append("g")
+    .attr("class", "links")
+  .selectAll("line")
+  .data(graph.links)
+  .enter().append("line")
+    .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-  var node = svg.append("g")
-      .attr("class", "nodes")
-    .selectAll("circle")
-    .data(graph.nodes)
-    .enter().append("circle")
-    // .attr("r", 5)
-    .attr("r", function(d){return 25/d.group})
-    .style("fill", function(d) { return color(d.group); })
-    .style("stroke", function(d) { return "black"; })
-      .call(d3.drag()
-          .on("start", dragstarted)
-          .on("drag", dragged)
-          .on("end", dragended));
+var node = svg.append("g")
+    .attr("class", "node").selectAll("g")
+  .data(graph.nodes).enter().append("g").append("circle")
+  // .attr("r", 5)
+  .attr("r", function(d){return 25/d.group})
+  .attr("rel", "tipsy")
+  .attr("title",function(d){return d.id;})
+  .style("fill", function(d) { return color(d.group); })
+    .call(d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended));
 
-  node.append("title")
-      .text(function(d) { return d.id; });
+node.append("title")
+    .text(function(d) { return d.id; });
 
+var tooltip = svg.append("text")
+node.on("mouseover", function(d){return tooltip.style("visibility", "visible").text(d.id).attr("y",d3.event.pageY).attr("x",d3.event.pageX);})
+  .on("mousemove", function(d){return tooltip.attr("y",
+      (d3.event.pageY-10)+"px").attr("x",(d3.event.pageX+10)+"px");})
+  .on("mouseout", function(){return tooltip.style("visibility", "visible");});
+// $('[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
 
-  simulation
-      .nodes(graph.nodes)
-      .on("tick", ticked);
+simulation
+    .nodes(graph.nodes)
+    .on("tick", ticked);
 
-  simulation.force("link")
-      .links(graph.links)
-      .distance(function(link){return .2/link.target.group;})
-      .strength(function strength(link) {
-        // return 1 / link.target.group;
-        return link.target.group*.1;
-        // return 2;
-      }
-      );
+simulation.force("link")
+    .links(graph.links)
+    .distance(function(link){return .2/link.target.group;})
+    .strength(function strength(link) {
+      // return 1 / link.target.group;
+      return (link.target.group)*.1;
+      // return 2;
+    }
+    );
 
 
 
