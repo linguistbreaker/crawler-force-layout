@@ -17,13 +17,10 @@
     "async": "^2.1.2",
     "connect": "^3.6.0",
     "d3-force": "^1.0.6",
-    "d3-tip": "^0.7.1",
     "debug": "^2.2.0",
-    "express": "^4.15.2",
     "jsonfile": "^2.4.0",
     "parse-domain": "^1.1.0",
     "request": "^2.76.0",
-    "serve-static": "^1.12.1",
     "x-ray": "^2.3.2"
   },
   "devDependencies": {
