@@ -2,7 +2,7 @@
 
 # Web Crawler
 Generates a site map of unique pages linked within the same domain, along with their mime-type - may use x-ray to scrape more. Places JSON jsonTrees in sitemaps/ folder.
-## Web Crawler Code app.js and scraper.js from https://github.com/Casper-Oakley/web-scraper . 
+ - Web Crawler Code app.js and scraper.js from https://github.com/Casper-Oakley/web-scraper . 
 
 # Favicon Grabber
 Started as a scraper - now uses google service - expects a png for now... Places images in data/fav/
