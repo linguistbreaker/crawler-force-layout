@@ -24,7 +24,9 @@ rl.on('line', function(line) {
   } else {
     domain = parsedDomain.domain + '.' + parsedDomain.tld;
     console.log(domain);
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     console.log("Give it a minute, but if this crashes try changing the depth limit from 3 to 2 in the line following this console.log statement in app.js.");
+    console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     scraper.scrape(startingUrl, domain, 3, function(err, res) {
       if(err) {
         debug('Unexpected Error: ' + err);

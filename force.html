@@ -48,8 +48,21 @@ polygon {
   stroke: #000;
   stroke-width:3px;
 }
-
+.top-bar{
+  width:100%;
+  height:100px;
+  border:2px solid blue;
+  background-color:#ddd;
+  overflow:hidden;
+}
+.top-bar a{
+  float:left;
+  margin:3px;
+  padding:3px;
+}
 </style>
+<!-- <div class="top-bar">
+</div> -->
 <svg width="1100" height="670">
   <defs id="mdef">
       <pattern id="image" x="0" y="0" height="40" width="40">
@@ -61,6 +74,8 @@ polygon {
 </svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
+// var fileList = [{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"},{"id":"www.google.com"},{"id":"www.apple.com"}]
+// let fileNodes = d3.select(".top-bar").selectAll("a").data(fileList).enter().append('a').attr('href',function(d){return d.id}).text(function(d){return d.id});
 let url = new URL(location.href);
 let sp = new URLSearchParams(url.search);
 var filename = sp.get('file');

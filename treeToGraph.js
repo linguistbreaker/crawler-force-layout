@@ -2,7 +2,7 @@ var fs = require("fs");
 var infile = require(process.argv[2]);
 var domain = process.argv[3];
 
-var myGraph = {"nodes":[],"links":[]};
+var myGraph = {"nodes":[],"links":[],"meta":[]};
 var groups = [];
 var count = 0;
 var mts =[];
@@ -10,6 +10,7 @@ var mts =[];
 console.log(process.argv[2]);
 console.log("##############################################################");
 console.log("Parsing graph from infile :: : " + infile);
+
 var createNode = function(name, group, mt, graph){
   var newNode = {'id':name,'group':group,'mt':mt};
   if (!graph.nodes.filter(function(e) { return (e.id == name); }).length > 0) {
