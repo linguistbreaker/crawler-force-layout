@@ -1,0 +1,364 @@
+{
+  "url": "https://www.edwardtufte.com/tufte/",
+  "mimetype": "text/html",
+  "children": [
+    {
+      "url": "http://edwardtufte.com/tufte/tufte.css",
+      "mimetype": "text/css",
+      "children": null
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/tufte.js",
+      "mimetype": "application/x-javascript",
+      "children": null
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/index",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/courses",
+      "mimetype": "text/html",
+      "children": [
+        {
+          "url": "http://edwardtufte.com/bboard/images/00042k-27300/twitterwooreeves.jpg",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://edwardtufte.com/tufte/courses/course-registration-form",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://edwardtufte.com/bboard/images/00042k-27324/quilttwitter.jpg",
+          "mimetype": "text/html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/4-books-stacked.jpg",
+      "mimetype": "image/jpeg",
+      "children": null
+    },
+    {
+      "url": "http://www.edwardtufte.com/tufte/books_be",
+      "mimetype": "text/html",
+      "children": [
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/sidebar.jpg",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/quantity.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/button_addtocart.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/be_cover.jpg",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/be_insidepages.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_addtocart.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/textb_bookcover.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_artcharts.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_fishes.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_500.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_max1.jpg",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_max2.jpg",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint_title_max1.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_max3.jpg",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_max4.jpg",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint_title_max3.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_loganimals.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_skiers.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint6.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint5.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_escapingflatland.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_dancenotation.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint3.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint10.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint9.gif",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://www.edwardtufte.com/tufte/books_be/graphics/fineart_bookprint15.gif",
+          "mimetype": "text/html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "url": "http://www.edwardtufte.com/tufte/ebooks",
+      "mimetype": "text/html",
+      "children": [
+        {
+          "url": "http://www.edwardtufte.com/tufte/ebooks/tufte.css",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://edwardtufte.com/tufte/graphics/sidebar.jpg",
+          "mimetype": "image/jpeg",
+          "children": null
+        },
+        {
+          "url": "http://edwardtufte.com/tufte/graphics/cart_button_addtocart.gif",
+          "mimetype": "image/gif",
+          "children": null
+        }
+      ]
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/minardposter.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/minardtext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/doubleminard.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/doubleminardtext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/cyclogram.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/cyclogramtext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/seeingaround.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/seeingaroundtext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/vst.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/vsttext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/ppessay.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/ppessaytext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/graphpaper.gif",
+      "mimetype": "image/gif",
+      "children": null
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/graphpapertext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/airportpeople.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/airporttext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/dancers.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/dancerstext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/musical.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/musicaltext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/tshirts.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/tshirtstext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/japanese.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/japanesetext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/loganimals.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/loganimalstext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/wine.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/winetext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/java.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/javatext.gif",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/escaping.jpg",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://edwardtufte.com/tufte/graphics/escapingtext.gif",
+      "mimetype": "text/html",
+      "children": []
+    }
+  ]
+}

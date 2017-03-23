@@ -1,0 +1,74 @@
+{
+  "url": "http://www.sebastianseilund.com/nodejs-async-in-practice",
+  "mimetype": "text/html",
+  "children": [
+    {
+      "url": "http://sebastianseilund.com/css/app-25cffa5e1615126a73f96b3cc77147dc.css?vsn=d",
+      "mimetype": "text/css",
+      "children": null
+    },
+    {
+      "url": "http://sebastianseilund.com",
+      "mimetype": "text/html",
+      "children": [
+        {
+          "url": "http://sebastianseilund.com/images/photos/sebastian-seilund-bf226a3c240660dfe65c97e01dde6561.jpg?vsn=d",
+          "mimetype": "image/jpeg",
+          "children": null
+        },
+        {
+          "url": "http://sebastianseilund.com/static-markdown-blog-posts-with-elixir-phoenix",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://sebastianseilund.com/nodejs-async-in-practice",
+          "mimetype": "text/html",
+          "children": []
+        },
+        {
+          "url": "http://sebastianseilund.com/json-socket-sending-json-over-tcp-in-node.js-using-sockets",
+          "mimetype": "text/html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "url": "http://sebastianseilund.com/images/logos/sebastian-seilund-logo-b9962eb403e1317f649d2369010a7dc4.png?vsn=d",
+      "mimetype": "image/png",
+      "children": null
+    },
+    {
+      "url": "http://sebastianseilund.com/about",
+      "mimetype": "text/html",
+      "children": []
+    },
+    {
+      "url": "http://sebastianseilund.com/work",
+      "mimetype": "text/html",
+      "children": [
+        {
+          "url": "http://sebastianseilund.com/images/logos/billy-logo-fcad897b82dd461bda696aaf2af2311e.png?vsn=d",
+          "mimetype": "image/png",
+          "children": null
+        }
+      ]
+    },
+    {
+      "url": "http://sebastianseilund.com/contact",
+      "mimetype": "text/html",
+      "children": [
+        {
+          "url": "http://sebastianseilund.com/contact/mailto:sebastian@seilund.com",
+          "mimetype": "text/html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "url": "http://sebastianseilund.com/js/app-70dcc344e6a26fa7af9fb23030ad60db.js?vsn=d",
+      "mimetype": "application/javascript",
+      "children": null
+    }
+  ]
+}
