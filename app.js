@@ -3,7 +3,9 @@ var scraper  = require('./scraper'),
     jsonfile = require('jsonfile'),
     path     = require('path'),
     readline = require('readline'),
-    pd       = require('parse-domain');
+    pd       = require('parse-domain'),
+    fork     = require('child_process').fork,
+    spawn    = require('child_process').spawn,
     util     = require('util');
 
 var rl = readline.createInterface({
@@ -27,9 +29,17 @@ rl.on('line', function(line) {
         debug('Unexpected Error: ' + err);
       } else {
         console.log(res);
-        jsonfile.writeFile(path.resolve(__dirname, 'sitemaps/' + domain + '.json'), res, {spaces: 2}, function(err) {
+        var filename = path.resolve(__dirname, 'sitemaps/' + domain + '.json');
+        jsonfile.writeFile(filename, res, {spaces: 2}, function(err) {
           console.log('Sitemap successfully written to ' + path.resolve(__dirname, 'sitemaps/' + domain + '.json'));
-          process.exit(0);
+          var child = fork('treeToGraph.js',[filename,domain]);
+          child.on('exit', (code) => {
+              console.log(`$$$$$$$$$$$$child process exited with code ${code}`);
+              console.log(`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$`);
+              console.log("Open http://localhost:8080/force.html?file="+filename+" to see a visualization of the site map.");
+              var favProc = fork('favicon.js',[domain]);
+              favproc.on('exit', (code) => {var serveProc = fork('serve.js',[filename]);});
+            });
         });
       }
     });

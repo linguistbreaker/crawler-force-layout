@@ -1,14 +1,25 @@
 var fs = require("fs");
 // var graph = require("data/graph.json");
-var wipro = require("/Users/chas/git/crawler-force-layout/sitemaps/apple.com.json");
+// var infile = require("/Users/chas/git/crawler-force-layout/sitemaps/wiprodigital.com.json");
+var infile = require(process.argv[2]);
+var domain = process.argv[3];
+
 var myGraph = {"nodes":[],"links":[]};
 var groups = [];
 var count = 0;
 var mts =[];
 
+// process.argv.forEach(function (val, index, array) {
+//   console.log(index + ': ' + val);
+// });
 
-var createNode = function(name, group, graph){
-  var newNode = {'id':name,'group':group};
+console.log(process.argv[2]);
+console.log("##############################################################");
+console.log("##############################################################");
+console.log("##############################################################");
+console.log("Infile :: : " + infile);
+var createNode = function(name, group, mt, graph){
+  var newNode = {'id':name,'group':group,'mt':mt};
   if (!graph.nodes.filter(function(e) { return (e.id == name); }).length > 0) {
     graph.nodes.push(newNode);
   }
@@ -31,7 +42,7 @@ var parseTree = function(node,graph){
   if(mts.indexOf(mt)<0){mts.push(mt);}
   count+=1;
   parentC = count-1;
-  graph = createNode(url,mts.indexOf(mt)+1,graph);
+  graph = createNode(url,mts.indexOf(mt)+1,mt,graph);
   if(kids && kids.length>0){
     console.log(kids.length+" children.");
     for(i in kids){
@@ -39,7 +50,7 @@ var parseTree = function(node,graph){
       if(c && mts.indexOf(c.mimetype)<0){mts.push(c.mimetype);}
       if(c){
       count+=1;
-      graph = createNode(c.url,mts.indexOf(c.mimetype)+1,graph);
+      graph = createNode(c.url,mts.indexOf(c.mimetype)+1,c.mimetype,graph);
       graph = createLink(url,c.url,1,graph);
       graph = parseTree(c,graph);
       }
@@ -47,8 +58,8 @@ var parseTree = function(node,graph){
   }
   return graph;
 }
-var graph = parseTree(wipro,myGraph);
-var ws = fs.createWriteStream("data/treeGraph.json");
+var graph = parseTree(infile,myGraph);
+var ws = fs.createWriteStream("data/"+domain+".json");
 setTimeout(function(){
 
   ws.write(JSON.stringify(graph));
@@ -60,6 +71,8 @@ setTimeout(function(){
     console.log(graph.nodes.length+" NODES.");
     console.log(graph.links.length+" LINKS.");
     console.log(mts.length+" Different Mimetypes.");
+    console.log("Graph file written to : "+"data/"+domain+".json");
+    process.exit(0);
     });
   }
   ,2000);
