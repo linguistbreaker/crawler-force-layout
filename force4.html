@@ -154,8 +154,16 @@ var rootNodeId = rootNode.data()[0].id;
 
 
 node.on("mouseover", function(d){
-  var tx = d.x-37;
-  var ty = d.y+15;
+  if(d.x+foWidth>=width){
+    var tx = d.x-37-foWidth;
+  }else{
+    var tx = d.x-37;
+  }
+  if(d.y+foHeight>=height){
+    var ty = d.y+15-foHeight;
+  }else{
+    var ty = d.y+15;
+  }
   var fo = svg.append("foreignObject")
                 .attr('x', tx)
                 .attr('y', ty)
@@ -201,7 +209,7 @@ simulation.force("link")
     .distance(function(link){if(link.source.id == rootNodeId){return 100}else{return .15/link.target.group;}})
     .strength(function strength(link) {
       // return 1 / link.target.group;
-      if(link.source.id == rootNodeId){return .8}else{return .2;}
+      if(link.source.id == rootNodeId){return .8}else{return link.target.group;}
       // return .07;
       // return 2;
     }

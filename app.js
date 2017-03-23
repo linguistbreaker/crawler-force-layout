@@ -38,6 +38,7 @@ rl.on('line', function(line) {
               console.log(`$$$$$$$$$$$$child process exited with code ${code}`);
               console.log(`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$`);
               console.log("Open http://localhost:8080/gravity.html?file="+domain+".json to see a visualization of the site map.");
+              console.log("Also try http://localhost:8080/force4.html?file="+domain+".json to see clustering of the site map.");
               var favProc = fork('favicon.js',[domain]);
               favProc.on('exit', (code) => {var serveProc = fork('serve.js',[filename]);});
             });

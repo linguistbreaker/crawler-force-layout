@@ -131,8 +131,16 @@ var t = 50, k = 15;
 var tip = {'w': (3/4 * t), 'h': k};
 
 node.on("mouseover", function(d){
-  var tx = d.x-37;
-  var ty = d.y+15;
+  if(d.x+foWidth>=width){
+    var tx = d.x-37-foWidth;
+  }else{
+    var tx = d.x-37;
+  }
+  if(d.y+foHeight>=height){
+    var ty = d.y+15-foHeight;
+  }else{
+    var ty = d.y+15;
+  }
   var fo = svg.append("foreignObject")
                 .attr('x', tx)
                 .attr('y', ty)
