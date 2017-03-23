@@ -113,7 +113,7 @@ var node = svg.append("g")
 
 var rootNode = svg.selectAll('g.node g circle')
                   .filter(function (d, i) { return i === 0;})
-                  .style("fill","#DDD")
+                  .style("fill","red")
                   .attr("cx",0)
                   .attr("cy",0)
                   .attr("fixed",true);
@@ -174,14 +174,15 @@ simulation.nodes(graph.nodes)
 
 simulation.force("link")
     .links(graph.links)
-    .distance(function(link){if(link.source.id == rootNodeId){console.log('setting link distnce to 100 for node 1');return 100}else{return .15/link.target.group;}})
+    .distance(function(link){if(link.source.id == rootNodeId){return 100}else{return .15/link.target.group;}})
     .strength(function strength(link) {
       // return 1 / link.target.group;
-      if(link.source.id == rootNodeId){console.log('setting link strngth to 100 for node 1');return .8}else{return .05;}
+      if(link.source.id == rootNodeId){return .8}else{return .2;}
       // return .07;
       // return 2;
     }
     );
+simulation.alphaTarget(0).alphaDecay(0.25).velocityDecay(.7);
 
 
 function ticked() {

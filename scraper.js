@@ -10,8 +10,8 @@ var completion = 0;
 
 module.exports = {};
 
-/** Module contains a function to be called to scrape,
- * passing in inputs
+/** scrape
+ * Inputs
  * @param {string} currentUrl The URL in which to scrape
  * @param {string} targetDomain The domain to scrape (ensures scraper does not leave domain)
  * @param {Object} previousUrls A list of all previous Urls
@@ -20,9 +20,7 @@ module.exports = {};
  */
 module.exports.scrape = function(currentUrl, targetDomain, depthLimit, callback) {
   previousUrls = [];
-
-
-  //A non-blocking while loop running to keep the user updated on % complete
+//Non-blocking timeout loop to update % complete
   async.whilst(function() {
       return completion != 1;
     }, function (callback) {
@@ -39,50 +37,44 @@ module.exports.scrape = function(currentUrl, targetDomain, depthLimit, callback)
   scrape(currentUrl, targetDomain, depthLimit, 1.0, function(err, res) {
     completion = 1;
     process.stdout.write('Currently ' + (1.0*100) + '% complete (done ' + count + ' sites).\r');
-    console.log();
+    // console.log();
     callback(err, res);
   });
 };
 
-
-
-
-/** Scrape function scrapes a given URL **/
 var scrape = function(currentUrl, targetDomain, depthLimit, percentAllowance, callback) {
   count++;
   //A negative depthLimit means no limit
   if(depthLimit > 0 || depthLimit <= -1) {
     previousUrls.push(currentUrl);
-    //Request ONLY the headers. We want to check the content type is html before actually getting it!
+    //Request ONLY headers.
     request.head(currentUrl, function(err, res) {
       if(err || !res.headers || !res.headers['content-type']) {
-        debug('Error retrieving url: ' + currentUrl + '. ' + err);
+        debug('Error retrieving : ' + currentUrl + '. ' + err);
         completion += percentAllowance;
         return callback(null, {url: currentUrl, mimetype: 'N/A', children: null});
       } else {
-        //If successfully recieved, match on content type (without additional parameters):
         var mimetype = res.headers['content-type'].split(';')[0];
         switch(res.headers['content-type'].split(';')[0]) {
-          //If target is html, download the html, then scrape and recurse
           case 'text/html':
             debug(currentUrl);
             request(currentUrl, function(err, res, body) {
               if(err) {
-                debug('Error retrieving body for url: ' + currentUrl + '. ' + err);
+                debug('Error retrieving body for : ' + currentUrl + '. ' + err);
                 completion += percentAllowance;
                 return callback(null, {url: currentUrl, mimetype: 'N/A', children: null});
               } else {
                 var urlList = parseHtml(body, currentUrl, targetDomain);
-                //Remove any previously visited URLs
+                //Remove previously visited URLs
                 urlList = urlList.filter(function(e) {
                   return previousUrls.indexOf(e) == -1;
                 });
-                //If there are no URLs to process, need to update the percent value
+                //If URLs to process, update the percent value
                 if(urlList.length == 0) {
                   completion += percentAllowance;
                 }
-                //For each URL, recurse, then compile into JSON and return
-                //Using async as request NPM is IO non blocking - can download in parallel
+                //For each URL, recurse,  compile to JSON and return
+                //Using async should allow thread control/limiting so as not to crash.
                 async.map(urlList, function(e, cb) {
                   process.nextTick(function() {
                     scrape(e, targetDomain, depthLimit-1, percentAllowance/urlList.length, cb)
@@ -99,10 +91,11 @@ var scrape = function(currentUrl, targetDomain, depthLimit, percentAllowance, ca
                     });
                   }
                 });
+
               }
             });
             break;
-          //If mime type is not html, return just the url, mime type and children
+          //If not html, return just the url, mt, children
           default:
             debug(currentUrl + ' ' + count);
             debug(mimetype);
@@ -119,17 +112,17 @@ var scrape = function(currentUrl, targetDomain, depthLimit, percentAllowance, ca
 };
 
 /**
- * Function which extracts any links from given html
+ * links from html
  *
- * @param {string} html A full body of html
- * @param {string} calledUrl the URL of the function which called it
- * @param {string} targetDomain The domain to scrape
+ * @param {string} html A body of html
+ * @param {string} calledUrl the URL
+ * @param {string} targetDomain The domain
  *
  */
 var parseHtml = function(html, calledUrl, targetDomain) {
-  //Regex filters according to any href or src locations
+  //Regex filters according to any href or src
   var listOfUrls = html.match(/(href|src)="[^> #"]+/g);
-  //If there exists any urls
+  //If any urls
   if(listOfUrls) {
     listOfUrls = filterHtml(listOfUrls, calledUrl, targetDomain);
   } else {
@@ -139,40 +132,39 @@ var parseHtml = function(html, calledUrl, targetDomain) {
 };
 
 var filterHtml = function(listOfUrls, calledUrl, targetDomain) {
-  //Remove any query parameters
+  //Remove  query parameters
   calledUrl = calledUrl.replace(/\?[^/]*$/, '');
-  //filter input calledUrl to ensure it has no trailing slash and if it's last is a .html, ., asp, aspx .xml or .php, remove it
+  //filter input calledUrl to remove trailing slash, .html, ., asp, aspx .xml or .php - could add asp etc.
   calledUrl = calledUrl.replace(/(\/)?(|[^/]*\.html|[^/]*\.css|[^/]*\.xml|[^/]*\.php|[^/]*\.aspx?)$/, '');
   //Remove anchor links from url
   calledUrl = calledUrl.replace(/#/, '');
   listOfUrls = listOfUrls.map(function(e) {
-    //URLs are case inspecific, but regex isn't
     e = e.toLowerCase();
-    //On absolute link, get the entire absolute link
+    //get  entire absolute link
     if(e.match(/https?:\/\/[^/]*/)) {
       return e.replace(/(href|src)="/, '');
-    //Two slashes at the start generally means it is sourced from a CDN and thus should be treated as an absolute link
+    //Treat two slashes (CDN) as  absolute link
     } else if(e.match(/^(href|src)="\/\//)) {
       return 'http:' + e.replace(/(href|src)="/, '');
-    //A single slash at the start of a path always dictates 'relative to the root'
+    //absolute relative paths
     } else if(e.match(/^(href|src)="\//)) {
       return 'http://' + targetDomain + e.replace(/(href|src)="/, '');
     } else {
-      //On relative link starting without a /, it is assumed that it is relative to the current location, and so is added to the current location
+      //fix relative links
       return calledUrl + '/' + e.replace(/(href|src)="/, '');
     }
   });
-  console.log(listOfUrls);
-  //Remove any non target domain entries
+  // console.log(listOfUrls);
+  //remove entries not on domain
   var targetRegex = new RegExp('^https?://[a-zA-Z0-9.]*'+targetDomain);
   listOfUrls = listOfUrls.filter(function(e) {
     return e.match(targetRegex);
   });
-  //Remove any mailto/tel links
-  listOfUrls = listOfUrls.filter(function(e) {
-    return !e.match(/(mailto:|tel:)/);
-  });
-  //Remove any missing trailing slashes and set all to http (?)
+  //Remove mailto/tel
+  // listOfUrls = listOfUrls.filter(function(e) {
+  //   return !e.match(/(mailto:|tel:)/);
+  // });
+  //Remove trailing slashes and set all to http
   listOfUrls = listOfUrls.map(function(e) {
     return e.replace(/\/$/,'');//.replace(/https?/,'http');
   });
@@ -181,24 +173,17 @@ var filterHtml = function(listOfUrls, calledUrl, targetDomain) {
     return listOfUrls.indexOf(e) == i;
   });
 
-  //Finally, remove any '.' and '..' references
-  // a URL such as /hello/world/../../index.html
-  // should produce /index.html
-  //Must be done with a loop, as regex cannot model
-  // the actions of a pushdown automata
+  //remove relative '.' and '..' references
   listOfUrls = listOfUrls.map(function(e) {
     //While there is still a /.. remove it
     while(e.match(/\/\.\./)) {
-      //If the previous URL segment contains a .html,
-      //remove that aswell
+      //remove .html,
       e = e.replace(/\/[^/]*(\/[^/]*.html)?\/\.\./, '');
     }
-    //After removing all /.. we remove all /.
+    //remove all /.
     return e.replace(/\/\./, '');
   });
-
   return listOfUrls;
-
 };
 
 var urlIsPage = function (url){

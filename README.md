@@ -16,8 +16,9 @@ To install:
 `npm install`
 
 ## Usage
-Simply run with `nodejs app.js` and put in the URL of the website you want a site map of.
-Once the program has finished execution, a JSON site map will have been generated in the sitemaps/ folder, with the name of the domain you had entered.
+Simply run with `nodejs app.js` and put in the URL of the website you want to target. This currently only
+supports URLs in the format 'http://www.lmgtfy.com' and may err otherwise. The app scrapes the site, then runs the favicon grabber and the treeToGraph.js script on the sitemap to generate a graph for D3. Then a simple webserver is launched. You can access the visualization at
+localhost:8080/gravity?file=filename where filename is the name returned by the script in the console. I haven't been able to exercise strict control over the async processes - I'd like to use queue for that. If the program crashes, try setting the depth limit from 3 to 2 on line 28 of app.js .
 
 
 

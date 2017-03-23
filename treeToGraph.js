@@ -1,6 +1,4 @@
 var fs = require("fs");
-// var graph = require("data/graph.json");
-// var infile = require("/Users/chas/git/crawler-force-layout/sitemaps/wiprodigital.com.json");
 var infile = require(process.argv[2]);
 var domain = process.argv[3];
 
@@ -9,15 +7,9 @@ var groups = [];
 var count = 0;
 var mts =[];
 
-// process.argv.forEach(function (val, index, array) {
-//   console.log(index + ': ' + val);
-// });
-
 console.log(process.argv[2]);
 console.log("##############################################################");
-console.log("##############################################################");
-console.log("##############################################################");
-console.log("Infile :: : " + infile);
+console.log("Parsing graph from infile :: : " + infile);
 var createNode = function(name, group, mt, graph){
   var newNode = {'id':name,'group':group,'mt':mt};
   if (!graph.nodes.filter(function(e) { return (e.id == name); }).length > 0) {
@@ -38,13 +30,12 @@ var parseTree = function(node,graph){
   var mt = node.mimetype;
   var kids = node.children;
   //create the node (non-duplicative), all children, and links
-  console.log(mt);
   if(mts.indexOf(mt)<0){mts.push(mt);}
   count+=1;
   parentC = count-1;
   graph = createNode(url,mts.indexOf(mt)+1,mt,graph);
   if(kids && kids.length>0){
-    console.log(kids.length+" children.");
+// console.log(kids.length+" children.");
     for(i in kids){
       var c = kids[i];
       if(c && mts.indexOf(c.mimetype)<0){mts.push(c.mimetype);}

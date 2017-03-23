@@ -24,7 +24,8 @@ rl.on('line', function(line) {
   } else {
     domain = parsedDomain.domain + '.' + parsedDomain.tld;
     console.log(domain);
-    scraper.scrape(startingUrl, domain, 2, function(err, res) {
+    console.log("Give it a minute, but if this crashes try changing the depth limit from 3 to 2 in the line following this console.log statement in app.js.");
+    scraper.scrape(startingUrl, domain, 3, function(err, res) {
       if(err) {
         debug('Unexpected Error: ' + err);
       } else {
@@ -36,9 +37,9 @@ rl.on('line', function(line) {
           child.on('exit', (code) => {
               console.log(`$$$$$$$$$$$$child process exited with code ${code}`);
               console.log(`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$`);
-              console.log("Open http://localhost:8080/force.html?file="+filename+" to see a visualization of the site map.");
+              console.log("Open http://localhost:8080/gravity.html?file="+domain+".json to see a visualization of the site map.");
               var favProc = fork('favicon.js',[domain]);
-              favproc.on('exit', (code) => {var serveProc = fork('serve.js',[filename]);});
+              favProc.on('exit', (code) => {var serveProc = fork('serve.js',[filename]);});
             });
         });
       }
